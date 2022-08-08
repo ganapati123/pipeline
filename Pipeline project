@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+    stages{
+        stage("Git checkout"){
+            steps{
+
+            }
+        }
+        stage("Maven build"){
+            steps{
+                sh "mvn clean package"
+                sh "mv target/*.war target/myweb.war"
+            }
+        }
+        stage("deploy-dev"){
+            steps{
+                sshagent(['tomcat-new']){
+                    sh """
+                }
+            }
+        }
+    }
+}
